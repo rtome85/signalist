@@ -11,6 +11,8 @@ import {
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { LogOutIcon } from "lucide-react";
+import NavItems from "./NavItems";
 
 const UserDropdown = () => {
   const router = useRouter();
@@ -64,6 +66,18 @@ const UserDropdown = () => {
             </div>
           </div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-gray-600" />
+        <DropdownMenuItem
+          onClick={handleSignOut}
+          className="text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors cursor-pointer"
+        >
+          <LogOutIcon className="h-4 w-4 mr-2 hidden sm:block" />
+          Logout
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-gray-600 hidden sm:block" />
+        <nav className="sm:hidden">
+          <NavItems />
+        </nav>
       </DropdownMenuContent>
     </DropdownMenu>
   );
