@@ -29,8 +29,6 @@ const useTradingViewWidget = (
       }
     };
   }, [scriptUrl, config, height]);
-
   return containerRef;
 };
-
 export default useTradingViewWidget;
