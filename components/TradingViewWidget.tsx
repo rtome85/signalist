@@ -11,7 +11,6 @@ interface TradingViewWidgetProps {
   height?: number;
   className?: string;
 }
-
 const TradingViewWidget = ({
   title,
   scriptUrl,
