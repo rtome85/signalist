@@ -32,6 +32,7 @@ const SignIn = () => {
         <InputField
           name="email"
           label="Email"
+          type="email"
           placeholder="johndoe@mail.com"
           register={register}
           error={errors.email}
@@ -39,8 +40,8 @@ const SignIn = () => {
             required: "Email is required",
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Please enter a valid email address"
-            }
+              message: "Please enter a valid email address",
+            },
           }}
         />
         <InputField
