@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { cache } from "react";
 
 const MONGO_DB_URI = process.env.MONGO_DB_URI;
 
@@ -34,7 +35,5 @@ export const connectToDatabase = async () => {
     throw err;
   }
 
-  console.log(
-    `Connected to database ${process.env.NODE_ENV} - ${MONGO_DB_URI}`,
-  );
+  return cached.conn;
 };

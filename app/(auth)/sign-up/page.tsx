@@ -10,8 +10,13 @@ import {
 } from "@/lib/constants";
 import { useForm } from "react-hook-form";
 import FooterLink from "@/components/forms/FooterLink";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const SignUp = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -33,9 +38,16 @@ const SignUp = () => {
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      console.log(data);
-    } catch (e) {
-      console.log(e);
+      const result = await signUpWithEmail(data);
+      if (result.success) router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Sign-up failed", {
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to create an account",
+      });
     }
   };
 
@@ -60,8 +72,10 @@ const SignUp = () => {
           error={errors.email}
           validation={{
             required: "Email is required",
-            pattern: /^\w+@\w+.\w+$/,
-            message: "Invalid email address",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Please enter a valid email address",
+            },
           }}
         />
         <InputField
@@ -78,9 +92,11 @@ const SignUp = () => {
               message: "Password must be at least 8 characters",
             },
             pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-              message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-            }
+              value:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              message:
+                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+            },
           }}
         />
         {/* Country */}
