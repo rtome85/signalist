@@ -60,6 +60,6 @@ export const signInWithEmail = async ({ email, password }: SignInFormData) => {
     return { success: true, data: response };
   } catch (error) {
     console.error("Sign in failed", error);
-    return { success: false, error: "Sign in failed" };
+    return { success: false, error: "Sign in failed. Please try again." };
   }
 };

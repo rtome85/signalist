@@ -26,8 +26,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       <section className="auth-right-section">
         <div className="z-10 relative lg:mt-4 lg:mb-16">
           <blockquote className="auth-blockquote">
-            Signalist turned my watchlist into a winning list. The alerts bla
-            bla
+            Signalist turned my watchlist into a winning list. bla
           </blockquote>
         </div>
         <div className="flex items-center justify-between">

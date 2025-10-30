@@ -13,6 +13,7 @@ import FooterLink from "@/components/forms/FooterLink";
 import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { ToyBrick } from "lucide-react";
 
 const SignUp = () => {
   const router = useRouter();
@@ -39,7 +40,14 @@ const SignUp = () => {
   const onSubmit = async (data: SignUpFormData) => {
     try {
       const result = await signUpWithEmail(data);
-      if (result.success) router.push("/");
+      if (result.success) {
+        toast.success("Account created successfully");
+        router.push("/");
+      } else {
+        toast.error("Sign-up failed", {
+          description: result.error || "Failed to create an account",
+        });
+      }
     } catch (error) {
       console.log(error);
       toast.error("Sign-up failed", {
