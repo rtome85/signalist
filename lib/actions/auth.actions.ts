@@ -20,22 +20,33 @@ export const signUpWithEmail = async ({
     });
 
     if (response) {
-      await inngest.send({
-        name: "app/user.created",
-        data: {
-          email: email,
-          name: fullName,
-          country,
-          investmentGoals,
-          preferredIndustry,
-        },
-      });
+      try {
+        await inngest.send({
+          name: "app/user.created",
+          data: {
+            email: email,
+            name: fullName,
+            country,
+            investmentGoals,
+            preferredIndustry,
+            riskTolerance,
+          },
+        });
+      } catch (error) {
+        console.error("Failed to send welcome mail", error);
+      }
     }
 
     return { success: true, data: response };
   } catch (error) {
-    console.error("Sign up failed", error);
-    return { success: false, error: "Sign up failed" };
+    if (error instanceof Error) {
+      return {
+        success: false,
+        error: error.message.includes("duplicate")
+          ? "Email already exists"
+          : "Failed to create account, please try again",
+      };
+    }
   }
 };
 
