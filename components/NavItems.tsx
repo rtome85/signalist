@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 import SearchCommand from "./SearchCommand";
-import SearchCommand from "./SearchCommand";
 
 const NavItems = ({
   initialStocks,
