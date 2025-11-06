@@ -37,17 +37,14 @@ const UserDropdown = ({
           className="flex items-center gap-3 text-gray-400 hover:text-yellow-500"
         >
           <Avatar>
-            <AvatarImage
-              className="h-10 w-10"
-              src="https://robtome.com/headshot.webp"
-            />
+            <AvatarImage className="h-10 w-10" src="/assets/icons/avatar.svg" />
             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-small font-bold">
               {user.name[0]}
             </AvatarFallback>
           </Avatar>
           <div className="hidden md-flex flex-col items-start">
             <span className="text-base font-medium text-gray-400">
-              {user.name}
+              {user.name[0]}
             </span>
           </div>
         </Button>
@@ -58,7 +55,7 @@ const UserDropdown = ({
             <Avatar>
               <AvatarImage
                 className="h-10 w-10"
-                src="https://robtome.com/headshot.webp"
+                src="/assets/icons/avatar.svg"
               />
               <AvatarFallback className="bg-yellow-500 text-yellow-900 text-small font-bold">
                 {user.name[0]}
